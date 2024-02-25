@@ -36,7 +36,9 @@
         "title": "litematerials-taurized",
         "width": 1280,
         "height": 700,
-        "transparent": true
+        "transparent": true,
+        "minHeight": 230,
+        "minWidth": 570
       }
     ],
     "security": {

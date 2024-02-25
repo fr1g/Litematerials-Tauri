@@ -16,23 +16,30 @@
         var Results = '', max = -1, _max = !false;
         let maxsvg = '<path xmlns="http://www.w3.org/2000/svg" d="M14 10L20 4M20 4H15.5M20 4V8.5M4 4L10 10M4 4V8.5M4 4H8.5M14 14L20 20M20 20V15.5M20 20H15.5M10 14L4 20M4 20H8.5M4 20L4 15.5" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
             minsvg = '<path xmlns="http://www.w3.org/2000/svg" d="M14 10L20 4M14 10H18.5M14 10V5.5M4 4L10 10M10 10V5.5M10 10H5.5M14 14L20 20M14 14V18.5M14 14H18.5M10 14L4 20M10 14H5.5M10 14V18.5" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
-        window.addEventListener('resize', (e) => {
+
+        const ButtonManage = (e) => {
             _TauriWindowInstance.isMaximized().then(result => {
                 _max = !result;
+                console.log(_max);
+                if(!_max) {
+                    document.getElementById('maxmin').innerHTML = minsvg;
+                    document.body.classList.replace('bg-opacity-0', 'bg-opacity-100');
+                    document.body.classList.replace('dark:bg-opacity-0', 'dark:bg-opacity-100');
+                    document.body.classList.replace('rounded-lg', 'xxxxx');
+                }
+                else {
+                    document.getElementById('maxmin').innerHTML = maxsvg;
+                    document.body.classList.replace('bg-opacity-100', 'bg-opacity-0');
+                    document.body.classList.replace('dark:bg-opacity-100', 'dark:bg-opacity-0');
+                    document.body.classList.replace('xxxxx', 'rounded-lg');
+                } 
+
             });
-            console.log(_max);
-            if(!_max) {
-                document.getElementById('maxmin').innerHTML = maxsvg;
-                document.body.classList.replace('bg-opacity-0', 'bg-opacity-100');
-                document.body.classList.replace('dark:bg-opacity-0', 'dark:bg-opacity-100');
-                document.body.classList.replace('rounded-lg', 'xxxxx');
-            }
-            else {
-                document.getElementById('maxmin').innerHTML = minsvg;
-                document.body.classList.replace('bg-opacity-100', 'bg-opacity-0');
-                document.body.classList.replace('dark:bg-opacity-100', 'dark:bg-opacity-0');
-                document.body.classList.replace('xxxxx', 'rounded-lg');
-            } 
+
+        }
+
+        window.addEventListener('resize', (e) => {
+            ButtonManage(e);
         });
     </script>
     <style>
@@ -738,6 +745,9 @@ window.onload = () => {
     // function ProcessPresetTarget(){
     //     console.log(params == window.location.href)
     // }()
+    setTimeout(() => {
+        ButtonManage(null);
+    }, 789);
 }
 
 const ChangeTitle = (title) => {
